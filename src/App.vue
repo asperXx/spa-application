@@ -1,37 +1,46 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
-      <v-list dense>
-        <v-list-item link>
+    <v-navigation-drawer v-model="drawer" app clipped class="hidden-lg-and-up">
+      <v-list dense >
+        <v-list-item
+        v-for="link in links"
+        :key="link.title" 
+        :to="link.url"
+        >
           <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
+            <v-icon>{{link.icon}}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>{{link.title}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-email</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Contact</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="indigo" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app clipped-left color="indigo" dark >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"></v-app-bar-nav-icon>
       <v-toolbar-title>Application</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
+      <v-toolbar-items class="hidden-sm-and-down">
+      <v-btn text
+      v-for="link in links"
+      :key="link.title"
+      :to="link.url"
+      >
+        <v-icon left>{{link.icon}}</v-icon>
+        {{link.title}}
       </v-btn>
+      </v-toolbar-items>
     </v-app-bar>
 
-    <v-main></v-main>
-    <!-- <router-view></router-view> -->
+    <v-main>
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <router-view />
+        </v-row>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
@@ -45,7 +54,14 @@ export default {
   components: {},
 
   data: () => ({
-    drawer: null
+    drawer: null,
+    links: [
+      {title:'Login', icon: 'mdi-exit-to-app', url:'/login'},
+      {title:'Registration', icon: 'mdi-account', url:'/registration'},
+      {title:'Orders', icon: 'mdi-bookmark-outline', url:'/orders'},
+      {title:'New ad', icon: 'mdi-note-plus-outline', url:'/new'},
+      {title:'My ads', icon: 'mdi-format-list-bulleted', url:'/list'}
+    ]
   })
 };
 </script>
