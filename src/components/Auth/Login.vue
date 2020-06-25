@@ -10,7 +10,7 @@
           <v-col
             cols="12"
             sm="8"
-            md="4"
+            md="6"
           >
             <v-card class="elevation-12">
               <v-toolbar
@@ -18,30 +18,22 @@
                 dark
                 flat
               >
-                <v-toolbar-title>Login form</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      :href="source"
-                      icon
-                      large
-                      target="_blank"
-                      v-on="on"
-                    >
-                      <v-icon>mdi-code-tags</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>Source</span>
-                </v-tooltip>
+                <v-toolbar-title>Войти</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form 
+                ref="form"
+                v-model="valid"
+                validation
+                >
                   <v-text-field
-                    label="Login"
-                    name="login"
+                    label="Email"
+                    name="email"
                     prepend-icon="mdi-account"
-                    type="text"
+                    type="email"
+                    v-model="email"
+                    :rules="emailRules"
+                    required
                   ></v-text-field>
 
                   <v-text-field
@@ -50,12 +42,17 @@
                     name="password"
                     prepend-icon="mdi-lock"
                     type="password"
+                    v-model="password"
+                    :rules="passwordRules"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Login</v-btn>
+                <v-btn 
+                color="primary"
+                @click="onSubmit"
+                >Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -65,6 +62,28 @@
 
 <script>
 export default {
-    
+    props: {
+      source: String,
+    },
+    data () {
+      return {
+        email: '',
+        password: '',
+        valid: false,
+        emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'Неправильно введен E-mail',
+      ],
+        passwordRules: [
+          v=> !!v || 'Password is required',
+          v=> (v && v.length >= 6) || 'Пароль не может быть меньше 6 символов'
+        ]
+      }
+    },
+    methods: {
+      onSubmit() {
+
+      }
+    }
 }
 </script>

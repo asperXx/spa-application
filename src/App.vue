@@ -18,7 +18,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app clipped-left color="indigo" dark >
+    <v-app-bar app clipped-left color="primary" dark >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"></v-app-bar-nav-icon>
       <v-toolbar-title>Application</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -34,13 +34,9 @@
       </v-toolbar-items>
     </v-app-bar>
 
-    <v-main>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <router-view />
-        </v-row>
-      </v-container>
-    </v-main>
+      <v-content>
+        <router-view></router-view>
+      </v-content>
   </v-app>
 </template>
 
