@@ -52,6 +52,7 @@
                 <v-btn 
                 color="primary"
                 @click="onSubmit"
+                :disabled="!valid"
                 >Login</v-btn>
               </v-card-actions>
             </v-card>
@@ -82,7 +83,13 @@ export default {
     },
     methods: {
       onSubmit() {
-
+        if (this.$refs.form.validate()) {
+          const user = {
+            email: this.email,
+            password: this.password
+          }
+          console.log(user)
+        }
       }
     }
 }
