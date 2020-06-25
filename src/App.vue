@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app clipped class="hidden-lg-and-up">
+    <v-navigation-drawer v-model="drawer" disable-resize-watcher="false" app class="hidden-md-and-up">
       <v-list dense >
         <v-list-item
         v-for="link in links"
@@ -20,7 +20,11 @@
 
     <v-app-bar app clipped-left color="primary" dark >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" class="pointer">
+        Application
+        </router-link>
+        </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
       <v-btn text
@@ -61,3 +65,10 @@ export default {
   })
 };
 </script>
+
+
+<style scoped>
+.pointer {
+  cursor: pointer;
+}
+</style>

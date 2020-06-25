@@ -24,7 +24,7 @@
                 <v-form 
                 ref="form"
                 v-model="valid"
-                lazy-validation
+                validation
                 >
                   <v-text-field
                     label="Email"
