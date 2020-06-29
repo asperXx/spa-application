@@ -1,6 +1,11 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" disable-resize-watcher="false" app class="hidden-md-and-up">
+    <v-navigation-drawer 
+    v-model="drawer" 
+    app 
+    class="hidden-md-and-up"
+
+    >
       <v-list dense >
         <v-list-item
         v-for="link in links"
