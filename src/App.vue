@@ -3,6 +3,7 @@
     <v-navigation-drawer 
     v-model="drawer" 
     app 
+    :stateless="!drawer"
     class="hidden-md-and-up"
 
     >
