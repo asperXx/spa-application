@@ -4,11 +4,12 @@
             <v-col cols="12">
                 <v-card>
                   <v-img 
-                  src="https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
+                  :src="ad.imageSrc"
                   height="300px"
                   ></v-img>  
                   <v-card-text>
-                      <h1 class="text--primary">Lorenm</h1>
+                      <h1 class="text--primary">{{ ad.title }}</h1>
+                      <p>{{ ad.description }}</p>
                   </v-card-text>
                   <v-card-actions>
                       <v-spacer></v-spacer>
@@ -23,6 +24,12 @@
 
 <script>
 export default {
-    
-}
+    props: ['id'],
+    computed: {
+        ad () {
+            const id = this.id
+            return this.$store.getters.adById(id)
+        }
+    }
+ }
 </script>

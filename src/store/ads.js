@@ -4,7 +4,7 @@ export default {
             {
                 title: "First ad",
                 description: "Hello im description",
-                promo: false,
+                promo: true,
                 imageSrc: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
                 id: "1",
               },
@@ -25,10 +25,16 @@ export default {
         ]
     },
     mutations: {
-
+        createAd(state, payload) {
+            state.ads.push(payload);
+        }
     },
     actions: {
+        createAd({commit}, payload) {
+            payload.id = 'qweqweqwe';
 
+            commit('createAd', payload);
+        }
     },
     getters: {
         ads (state) {
@@ -41,6 +47,11 @@ export default {
         },
         myAds (state) {
             return state.ads;
+        },
+        adById (state) {
+            return adId => {
+                return state.ads.find(ad => ad.id === adId);
+            };
         }
     }
 };

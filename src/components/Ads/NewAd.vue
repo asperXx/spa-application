@@ -2,6 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="6" offset-sm="3">
+        <v-card class="pa-4">
         <h1 class="text--secondary mb-3">Create new ad</h1>
         <v-form 
         ref="form" 
@@ -67,6 +68,7 @@
               >Create ad</v-btn>
           </v-col>
         </v-row>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -91,7 +93,8 @@ export default {
                     description: this.description,
                     promo: this.promo
                 }
-                console.log(ad)
+                
+                this.$store.dispatch('createAd', ad)
             }
         }
     }
