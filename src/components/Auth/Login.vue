@@ -82,13 +82,18 @@ export default {
       }
     },
     methods: {
-      onSubmit() {
+      async onSubmit() {
         if (this.$refs.form.validate()) {
           const user = {
             email: this.email,
             password: this.password
           }
-          console.log(user)
+          try {
+            await this.$store.dispatch('login', user);
+            this.$router.push('/')
+          } catch (e){
+            console.log(e)
+          }
         }
       }
     }
